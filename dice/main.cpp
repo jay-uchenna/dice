@@ -7,12 +7,29 @@
 
 
 
+
+
 #include <iostream>
 #include <math.h>
 #include <random>
+#include <string>
 
 const int D = 40;
 const int s = (const int)2 * D;
+
+bool throw_dice(){
+
+    std::cout << "press y to throw dice: ";
+
+    std::string throw_dice;
+    std::getline (std::cin,throw_dice);
+
+    if((throw_dice[0] == 'y' || throw_dice[0] == 'Y') && throw_dice.size() == 1 ){
+       return true;
+    }
+    else return false;
+
+}
 
 int random_1_to_6(){
     
@@ -54,7 +71,7 @@ void arrange_cirles_on_dice(char (&square_arr)[D][s]){
                 draw_dice_circle(square_arr, 33, 60);
         case 2:
                 draw_dice_circle(square_arr, 33, 20);
-                draw_dice_circle(square_arr, 8, 60);
+                draw_dice_circle(square_arr, 7, 60);
                break;
 
         case 5:
@@ -98,7 +115,6 @@ void draw_dice(char (&square_arr)[D][s]){
 int main() {
     
    char square_arr[D][s];
-   char throw_dice = 'n';
 
    do{
         
@@ -106,14 +122,15 @@ int main() {
         draw_dice(square_arr);
         display_dice(square_arr);
 
-
-        std::cout << "press y to throw dice: ";
-        std::cin >> throw_dice;
-   }while(throw_dice == 'y' || throw_dice == 'Y');
+   }while(throw_dice());
 
 
     return 0;
 }
+
+
+
+
 
 
 
